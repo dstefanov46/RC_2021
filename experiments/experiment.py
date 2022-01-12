@@ -1,4 +1,5 @@
 import inspect
+import time
 from typing import Callable, Dict, NamedTuple, Optional, Type, Union
 
 import numpy as np
@@ -31,11 +32,13 @@ class Experiment:
 
     def __init__(
         self,
+        method: None,
         dataset_path: str,
         estimator: Union[Type[Estimator], Type[Predictor]],
         hyper_params: Dict,
         job_config: Dict,
     ) -> None:
+        self.method = method
         self.dataset_path = dataset_path
         self.estimator = estimator
         self.hyper_params = hyper_params
@@ -96,10 +99,12 @@ class Experiment:
         if "validation" in self.job_config and self.job_config["validation"]:
             target_train = Y[:, :len(index) - 2 * prediction_length]
             target_test = Y[:, :len(index) - prediction_length]
+            remaining_length = prediction_length
             valid_plus_test_length = 2 * prediction_length
         else:
             target_train = Y[:, :len(index) - prediction_length]
             target_test = Y
+            remaining_length = 0
             valid_plus_test_length = prediction_length
 
         train_dataset = ListDataset(
@@ -123,7 +128,7 @@ class Experiment:
             print(f'test target shape: {_data["target"].shape}')
 
             # confirm test target has the right shape!
-            assert _data["target"].shape == (Y.shape[0], Y.shape[1])
+            assert _data["target"].shape == (Y.shape[0], Y.shape[1] - remaining_length)
 
         return HierarchicalDatasetInfo(
             train_dataset=train_dataset,
@@ -158,7 +163,11 @@ class Experiment:
                 trainer=trainer,
             )
 
+            file = open(f'./experiments/results/{self.method}/{dataset_str}/execution_times.txt', 'a')
+            start_time = time.time()
             predictor = estimator.train(train_dataset)
+            train_time = time.time() - start_time
+            file.write(f'Train time: {train_time}\n')
         else:
             tags = pd.read_csv(f'{self.dataset_path}/tags.csv', header=None).to_numpy()
             predictor = self.estimator(
@@ -173,11 +182,16 @@ class Experiment:
             )
 
         evaluator = MultivariateEvaluator(quantiles=(np.arange(20) / 20.0)[1:], )
+                  
+        start_time = time.time()
         agg_metrics, item_metrics = backtest_metrics(
             test_dataset,
             predictor,
             evaluator,
         )
+        test_time = time.time() - start_time
+        file.write(f'Test time: {test_time}\n')
+        file.close()
 
         if dataset_str == "tourismlarge":
             cum_num_nodes_per_level = dataset_config_dict[dataset_str]["cum_num_nodes_per_level"]
@@ -203,7 +217,7 @@ class Experiment:
         return agg_metrics, level_wise_agg_metrics
 
 
-def main(dataset_path: str, estimator: Type[Estimator], hyper_params: Dict, job_config: Optional[Dict] = None):
+def main(method: None, dataset_path: str, estimator: Type[Estimator], hyper_params: Dict, job_config: Optional[Dict] = None):
     if not job_config:
         job_config = dict(
             metrics=["mean_wQuantileLoss"],
@@ -211,6 +225,7 @@ def main(dataset_path: str, estimator: Type[Estimator], hyper_params: Dict, job_
         )
 
     expt = Experiment(
+        method=method, 
         dataset_path=dataset_path,
         estimator=estimator,
         hyper_params=hyper_params,

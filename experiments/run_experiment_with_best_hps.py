@@ -2,6 +2,7 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 import pickle
+import time
 
 from gluonts.model.deephier import DeepHierEstimator
 from gluonts.model.r_forecast import RHierarchicalForecastPredictor
@@ -72,9 +73,14 @@ if __name__ == "__main__":
 
     agg_metrics_ls = []
     level_wise_agg_metrics_ls = []
+    file = open(results_path + '/execution_times.txt', 'a')
+    test_start = time.strftime('%d-%m-%Y %H:%M:%S', time.localtime(time.time()))
+    file.write(f'\n\nTests made at: {test_start}\n')
     for i in range(num_runs):
         print(f"********* Run {i+1} *********")
+        file.write(f'\nExecution times for run {i+1}:\n')
         agg_metrics, level_wise_agg_metrics = experiment.main(
+            method=args.method,
             dataset_path=f'./experiments/data/{dataset}',
             estimator=estimator,
             hyper_params=hyper_params,
@@ -88,5 +94,7 @@ if __name__ == "__main__":
         unique_id = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
         with open(f"{results_path}/run_{unique_id}.pkl", "wb") as fp:
             pickle.dump([agg_metrics, level_wise_agg_metrics], fp)
-
+            
+    file.close()
+    
     utils.print_results(agg_metrics_ls=agg_metrics_ls, level_wise_agg_metrics_ls=level_wise_agg_metrics_ls)
