@@ -9,11 +9,16 @@ import experiment
 import utils
 
 epoch_set = [10, 25, 50]
-context_len_dict = {'tourism': [2, 3, 4],
+context_len_dict = {'tourismsmall': [2, 3, 4],
                     'tourismlarge': [2, 3, 4],
                     'labour': [2, 3, 4],
                     'traffic': [15, 25, 40, 60],
                     'wiki': [15, 25, 40, 60]}
+prediction_len_dict = {'tourismsmall': 8,
+                       'tourismlarge': 12,
+                       'labour': 8,
+                       'traffic': 1,
+                       'wiki': 1}
 warm_start_dict = {'DeepVAR': 0,
                    'DeepVARPlus': 0,
                    'HierE2E': 0.1}
@@ -58,12 +63,12 @@ if __name__ == "__main__":
         coherent_pred_samples = True
 
     pick_incomplete = False
-    context_lens = context_len_dict[dataset]
     if dataset == "wiki":
         dataset = "wiki2"
     elif dataset == "tourism":
         dataset = "tourismsmall"
         pick_incomplete = True
+    context_lens = context_len_dict[dataset]
 
     if dataset == 'tourismlarge' and method == 'HierE2E':
         batch_size = 4
@@ -82,7 +87,7 @@ if __name__ == "__main__":
                             'num_parallel_samples': 200,
                             'hybridize': False,
                             'learning_rate': 0.001,
-                            'context_length': context_len,
+                            'context_length': context_len * prediction_len_dict[dataset],
                             'rank': 0,
                             'assert_reconciliation': False,
                             'num_deep_models': 1,
