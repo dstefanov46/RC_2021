@@ -27,18 +27,6 @@ if __name__ == "__main__":
     """
     Test different hyperparameter configurations for the 3 neural models (DeepVAR, DeepVARPlus, HierE2E):
     
-    python test_hp_configurations.py --method method --num-training-samples num-training-samples --epochs epochs
-    
-    where
-                
-        method is one of: [HierE2E, DeepVAR, DeepVARPlus]
-        (see config/method_config.py)
-        
-        num-training-samples: number of samples forming a probability distribution (while training); possible values
-        are 50 and 200
-        
-        epochs: number of epochs to train the model; values we considered are 50 and 100 
-    
     """
 
     parser = argparse.ArgumentParser()

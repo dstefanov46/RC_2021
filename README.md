@@ -1,37 +1,83 @@
-# Code for "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical Time Series" 
+# Reproducibility Challenge 2021: "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical Time Series"
+
+---
+This repository was created as part of Reproducibility Challenge 2021. In this challenge, I tried to reproduce the 
+empirical results presented in the work "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical 
+Time Series" accepted at ICML 2021. Therefore, in this repository you can find the code used during that replication 
+process.
 
 
-This is a fork of [GluonTS](https://github.com/awslabs/gluon-ts/tree/master) accompanying the paper 
-"End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical Time Series" presented at ICML 2021.
 
-## Setup
+## Requirements
 
-The code is written in [GluonTS](https://github.com/awslabs/gluon-ts/tree/master), 
-we recommend installing it the following way 
+---
+As I conducted my experiments on two separate machines (mainly due to resource limitation), I provide two sets of 
+instructions for creation of my test environments:
+
+**Instructions for Amazon SageMaker Notebook Instance (ml.m4.4xlarge)**
+
+This machine was used to test the deep learning methods. The work environment on it can be created 
+using the following set of commands:
 
 ```
 pip install --upgrade mxnet
-git clone https://github.com/rshyamsundar/gluonts-hierarchical-ICML-2021.git
-cd gluonts-hierarchical-ICML-2021
+git clone https://github.com/dstefanov46/Reproducibility-Challenge-2021.git
+cd Reproducibility-Challenge-2021
 pip install -e .
 ```
 
-The model will also be released in GluonTS mainline, this fork is created to keep a version with results as close as possible to 
-the one published in the paper. We do encourage you, however, to try out GluonTS mainline as well; due to code changes on mainline, results may 
-change over time there.
+**Instructions for Linux Ubuntu 20.04 (x64)**
 
-(**Skip this step if you want to run only our method.**) We also provide a python wrapper for running existing hierarchical methods that were implemented in R.
-To run them, `rpy2` must be installed along with R and `hts` package: 
+On this machine we evaluated the classical machine learning methods. To create the environment used on it, first run 
+the commands above. Then, also run:
 
 ```
 pip install rpy2==2.9
 pip install jinja2
+```
+
+To be able to execute the final two commands, you would need to have `R` installed. Once you finish that installation, 
+simply run in the terminal:
+```
 R -e 'install.packages(c("hts"), repos="https://cloud.r-project.org")'
-``` 
-For running the competing method `PERMBU_MINT`, more packages need to be installed; in case of any issues, check R-specific [README.md](https://github.com/rshyamsundar/gluonts-hierarchical-ICML-2021/tree/master/src/gluonts/model/r_forecast/R), which provides help for both ubuntu and mac environments.
-``` 
 R -e 'install.packages(c("here", "SGL", "matrixcalc", "igraph", "gsl", "copula", "sn", "scoringRules", "fBasics", "msm", "gtools", "lubridate", "forecast", "abind", "glmnet", "propagate", "SuppDists"))'
 ```
+
+## Evaluation
+
+---
+*Note*: If you would only like to generate the tables provided in my report and supplementary
+material from the pickle files with results, then proceed to the section **Report Result Generation**. Also, if you 
+would like to omit the hyperparameter grid search for the neural models, and directly obtain the results for the best 
+configurations of the models, please continue to the next section **Testing Optimal Configurations**.
+
+### Hyperparameter Grid Search 
+
+
+As already mentioned, we performed a hyperparameter grid search for the deep learning methods. To find the best
+hyperparameters for a particular model on a particular dataset, run the command:
+
+```angular2html
+python experiments/run_experiment_with_selected_hps.py --dataset dataset --method method --num_runs 5
+```
+where for the argument `dataset` you pass one of the values: `tourism`, `tourismlarge`, `labour`, `traffic` and `wiki`.
+The argument `method` can take one of the three values: `DeepVAR`, `DeepVARPlus` and `HierE2E`. The `num_runs` can be 
+set to any positive integer, but we kept this argument fixed at 5 during the whole test phase, as that is the number of
+runs the authors of the original paper used during their evaluation.
+
+### Testing Optimal Configurations
+Having done the hyperparameter tuning, you can test the performance of the models with their best hyperparameters. To 
+see what kind of results a model obtains on a dataset of interest, run:
+
+```angular2html
+python experiments/run_experiment_with_best_hps.py --dataset dataset --method method --num-runs 5
+```
+
+## Report Result Generation
+
+---
+As aforementioned, we also publish the code used to summarize the produced results and create the tables shown in the 
+report and supplementary material. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. 
 
 ## Running
 
