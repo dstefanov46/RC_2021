@@ -86,22 +86,25 @@ python experiments/run_experiment_with_best_hps.py --dataset dataset --method me
 ## Results
 
 ---
-As aforementioned, we also publish the code used to summarize the produced results and create the tables shown in the 
-report and supplementary material. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. 
+As aforementioned, we also publish the code used to summarize the experiment results and create the tables shown in the 
+report and supplementary material. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. However, 
+before this, download the folder with results accessible at the following [GDrive](https://drive.google.com/drive/folders/1TICOt9KUshRglZs8GnDCpNLbjnjcC0Dv?usp=sharing). 
+This folder should be put in the parent directory of the local copy of this repository. That way the file `evaluate_results.ipynb` will execute with no
+problems. 
 
 Here we offer a glimpse at the table needed to confirm authors' main claim that the newly proposed model `HierE2E` 
 outperforms its competitors on all datasets, except on `Tourism`, where it is second best:
 
 |Methods/Datasets | Labour | Traffic | Tourism |Tourism-L |Wiki |
 |--------|--------|---------|---------|--------------------|--------------------|
-|ARIMA\_NaiveBU   |   0.0453 +/- 0.0 |     0.0753 +/- 0.0 |     0.1138 +/- 0.0 |     0.1752 +/- 0.0 |     0.3776 +/- 0.0 |
-|ETS\_NaiveBU    |     0.0432 +/- 0.0 |     0.0665 +/- 0.0 |     0.1008 +/- 0.0 |      0.169 +/- 0.0 |     0.4673 +/- 0.0 |
-|ARIMA\_MINT\_shr |     0.0467 +/- 0.0 |     0.0775 +/- 0.0 |     0.1171 +/- 0.0 |     0.1615 +/- 0.0 |     0.2466 +/- 0.0 |
-|ARIMA\_MINT\_ols |     0.0463 +/- 0.0 |     0.1123 +/- 0.0 |     0.1195 +/- 0.0 |     0.1731 +/- 0.0 |     0.2782 +/- 0.0 |
-|ETS\_MINT\_shr   |     0.0455 +/- 0.0 |     0.0963 +/- 0.0 |     0.1013 +/- 0.0 |     0.1627 +/- 0.0 |     0.3622 +/- 0.0 |
-|ETS\_MINT\_ols   |     0.0459 +/- 0.0 |      0.111 +/- 0.0 |     0.1002 +/- 0.0 |     0.1668 +/- 0.0 |     0.2702 +/- 0.0 |
-|ARIMA\_ERM      |     0.0399 +/- 0.0 |     0.0466 +/- 0.0 |     0.5885 +/- 0.0 |     0.5668 +/- 0.0 |     0.2195 +/- 0.0 |
-|ETS\_ERM        |     0.0456 +/- 0.0 |     0.1027 +/- 0.0 |     2.3742 +/- 0.0 |      0.508 +/- 0.0 |     0.2217 +/- 0.0 |
+|ARIMA\_NaiveBU   |   0.0453 |     0.0753 |     0.1138 |     0.1752 |     0.3776 |
+|ETS\_NaiveBU    |     0.0432 |     0.0665 |     0.1008 |      0.169 |     0.4673 |
+|ARIMA\_MINT\_shr |     0.0467 |     0.0775 |     0.1171 |     0.1615 |     0.2466 |
+|ARIMA\_MINT\_ols |     0.0463 |     0.1123 |     0.1195 |     0.1731 |     0.2782 |
+|ETS\_MINT\_shr   |     0.0455 |     0.0963 |     0.1013 |     0.1627 |     0.3622 |
+|ETS\_MINT\_ols   |     0.0459 |      0.111 |     0.1002 |     0.1668 |     0.2702 |
+|ARIMA\_ERM      |     0.0399 |     0.0466 |     0.5885 |     0.5668 |     0.2195 |
+|ETS\_ERM        |     0.0456 |     0.1027 |     2.3742 |      0.508 |     0.2217 |
 |PERMBU\_MINT    |  0.0393 +/- 0.0002 |  0.0679 +/- 0.0047 |  0.0763 +/- 0.0003 |                 NA |     0.279 +/- 0.02 |
 |HierE2E        |  0.0335 +/- 0.0064 |  0.0359 +/- 0.0114 |  0.0916 +/- 0.0082 |  0.1688 +/- 0.0036 |  0.1629 +/- 0.0056 |
 |DeepVAR        |  0.0367 +/- 0.0049 |  0.0334 +/- 0.0033 |  0.0953 +/- 0.0056 |  0.1394 +/- 0.0019 |  0.2081 +/- 0.0059 |
