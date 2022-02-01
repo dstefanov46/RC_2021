@@ -13,12 +13,12 @@ context_len_dict = {'tourismsmall': [2, 3, 4],
                     'tourismlarge': [2, 3, 4],
                     'labour': [2, 3, 4],
                     'traffic': [15, 25, 40, 60],
-                    'wiki': [15, 25, 40, 60]}
+                    'wiki2': [15, 25, 40, 60]}
 prediction_len_dict = {'tourismsmall': 8,
                        'tourismlarge': 12,
                        'labour': 8,
                        'traffic': 1,
-                       'wiki': 1}
+                       'wiki2': 1}
 warm_start_dict = {'DeepVAR': 0,
                    'DeepVARPlus': 0,
                    'HierE2E': 0.1}
