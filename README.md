@@ -1,12 +1,14 @@
 # Reproducibility Challenge 2021: "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical Time Series"
 
 ---
-This repository was created as part of Reproducibility Challenge 2021. In this challenge, we tried to reproduce the 
-empirical results presented in the work "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical 
-Time Series" accepted at ICML 2021. Therefore, in this repository you can find the code used during that replication 
+This repository was created as part of [Reproducibility Challenge 2021](https://paperswithcode.com/rc2021/). In this challenge, we tried to reproduce the 
+empirical results presented in the work [End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical 
+Time Series](https://proceedings.mlr.press/v139/rangapuram21a.html) accepted at ICML 2021. Therefore, in this repository you can find the code used during that replication 
 process.
 
-
+![The architecture of the model `HierE2E` proposed in the paper "End-to-End Learning of Coherent Probabilistic Forecasts for 
+Hierarchical Time Series"](model_architecture.png)*The architecture of the model `HierE2E` proposed in the paper "End-to-End Learning of Coherent Probabilistic Forecasts for 
+Hierarchical Time Series"*
 
 ## Requirements
 
@@ -15,13 +17,14 @@ As we conducted our experiments on two separate machines (mainly due to resource
 instructions for creation of the test environments:
 
 **Instructions for Amazon SageMaker Notebook Instance** (more detailed information about the virtual machine is 
-available in the section **Computational Requirements** in our **Reproducibility Report**)
+available in the section **Computational Requirements** in our **Reproducibility Report** stored in the folder `report`)
 
 This machine was used to test the deep learning methods. The work environment on it can be created 
 using the following set of commands:
 
 ```
 pip install --upgrade mxnet
+cd SageMaker
 git clone https://github.com/dstefanov46/Reproducibility-Challenge-2021.git
 cd Reproducibility-Challenge-2021
 pip install -e .
@@ -50,7 +53,7 @@ R -e 'install.packages(c("here", "SGL", "matrixcalc", "igraph", "gsl", "copula",
 
 ---
 Before continuing onto the experiments we conducted, we would like to mention we also investigated the datasets considered 
-in the original paper. The datasets were already provided in the repository accompanying the paper, but nonetheless we 
+in the original paper. They were already provided in the repository accompanying the paper (and can also be found in the folder `experiments/data` in this repository), but nonetheless we 
 performed an analysis to be certain the dataset features outlined in the paper align with the actual data made
 available. Our findings are presented in the Jupyter Notebook `analyze_datasets.ipynb`.
 
@@ -59,8 +62,8 @@ available. Our findings are presented in the Jupyter Notebook `analyze_datasets.
 ## Evaluation
 
 ---
-*Note*: If you would only like to generate the tables provided in our report and supplementary
-material from our pickle files with results, then proceed to the section **Results**. Also, if you 
+*Note*: If you would only like to generate the tables provided in our **Reproducibility Report** and **Supplementary
+Material to Reproducibility Report** (also available in the folder `report`) from our pickle files with results, then proceed to the section **Results**. Also, if you 
 would like to omit the hyperparameter grid search for the neural models, and directly obtain the results for the best 
 configurations of the models, please continue to the section **Optimal Configuration Tests**.
 
