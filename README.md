@@ -1,6 +1,6 @@
 # Reproducibility Challenge 2021: "End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical Time Series"
 
----
+
 This repository was created as part of [Reproducibility Challenge 2021](https://paperswithcode.com/rc2021/). In this challenge, we tried to reproduce the 
 empirical results presented in the work [End-to-End Learning of Coherent Probabilistic Forecasts for Hierarchical 
 Time Series](https://proceedings.mlr.press/v139/rangapuram21a.html) accepted at ICML 2021. Therefore, in this repository you can find the code used during that replication 
@@ -51,7 +51,7 @@ R -e 'install.packages(c("here", "SGL", "matrixcalc", "igraph", "gsl", "copula",
 
 ## Datasets 
 
----
+
 Before continuing onto the experiments we conducted, we would like to mention we also investigated the datasets considered 
 in the original paper. They were already provided in the repository accompanying the paper (and can also be found in the folder `experiments/data` in this repository), but nonetheless we 
 performed an analysis to be certain the dataset features outlined in the paper align with the actual data made
@@ -61,7 +61,7 @@ available. Our findings are presented in the Jupyter Notebook `analyze_datasets.
 
 ## Evaluation
 
----
+
 *Note*: If you would only like to generate the tables provided in our **Reproducibility Report** and **Supplementary
 Material to Reproducibility Report** (also available in the folder `report`) from our pickle files with results, then proceed to the section **Results**. Also, if you 
 would like to omit the hyperparameter grid search for the neural models, and directly obtain the results for the best 
@@ -95,7 +95,7 @@ argument `num-runs`, due to same reasons as above, is fixed at 5.
 
 ## Results
 
----
+
 As aforementioned, we also publish the code used to summarize the experiment results and create the tables shown in the 
 **Reproducibility Report** and **Supplementary Material to Reproducibility Report**. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. However, 
 before this, download the folder with results accessible at the following [GDrive](https://drive.google.com/drive/folders/1TICOt9KUshRglZs8GnDCpNLbjnjcC0Dv?usp=sharing). 
@@ -125,7 +125,7 @@ results is provided in section **Analysis of Claim 1** of the **Reproducibility 
 
 ## Contributing 
 
----
+
 If you'd like to contribute, or have any suggestions for these guidelines, you can contact me at 
 [ds2243@student.uni-lj.si](https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=1209600&osid=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin) or open an issue on this GitHub repository.
 
