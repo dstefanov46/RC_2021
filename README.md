@@ -36,6 +36,7 @@ the commands above. Then, also run:
 ```
 pip install rpy2==2.9
 pip install jinja2
+pip install jupyterlab
 ```
 
 To be able to execute the final two commands, you would need to have `R` installed. Once you finish that installation, 
@@ -89,9 +90,9 @@ python experiments/run_experiment_with_best_hps.py --dataset dataset --method me
 
 ---
 As aforementioned, we also publish the code used to summarize the experiment results and create the tables shown in the 
-report and supplementary material. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. However, 
+**Reproducibility Report** and **Supplementary Material to Reproducibility Report**. To achieve this, run the Jupyter Notebook titled `evaluate_results.ipynb`. However, 
 before this, download the folder with results accessible at the following [GDrive](https://drive.google.com/drive/folders/1TICOt9KUshRglZs8GnDCpNLbjnjcC0Dv?usp=sharing). 
-The folder should be put in (the local copy of) this repository. That way the file `evaluate_results.ipynb` will execute with no
+The folder should be put in (the local copy of) this repository, and unzipped. That way the file `evaluate_results.ipynb` will execute with no
 problems. 
 
 Here we offer a glimpse at Table 4 of our **Reproducibility Report**. This table was used to test authors' main claim that the newly proposed model `HierE2E` 
