@@ -12,7 +12,7 @@ Hierarchical Time Series"*
 
 ## Requirements
 
----
+
 As we conducted our experiments on two separate machines (mainly due to resource limitation), we provide two sets of 
 instructions for creation of the test environments:
 
