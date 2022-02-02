@@ -71,7 +71,7 @@ As already mentioned, we performed a hyperparameter grid search for the deep lea
 hyperparameters for a particular model on a particular dataset, run the command:
 
 ```angular2html
-python experiments/run_experiment_with_selected_hps.py --dataset dataset --method method --num_runs 5
+python3 experiments/run_experiment_with_selected_hps.py --dataset dataset --method method --num_runs 5
 ```
 where for the argument `dataset` you pass one of the values: `tourism`, `tourismlarge`, `labour`, `traffic` and `wiki`.
 The argument `method` can take one of the three values: `DeepVAR`, `DeepVARPlus` and `HierE2E`. The `num_runs` can be 
@@ -83,8 +83,10 @@ Having done the hyperparameter tuning, you can test the performance of the model
 see what kind of results a model obtains on a particular dataset, run:
 
 ```angular2html
-python experiments/run_experiment_with_best_hps.py --dataset dataset --method method --num-runs 5
+python3 experiments/run_experiment_with_best_hps.py --dataset dataset --method method --num-runs 5
 ```
+where for the argument `dataset` you pass one of the values: `tourism`, `tourismlarge`, `labour`, `traf>
+The argument `method` can take one of the values: `ETS_NaiveBU`, `ARIMA_NaiveBU`, `ETS_MINT_shr`, `ETS_MINT_ols`, `ARIMA_MINT_shr`, `ARIMA_MINT_ols`, `ETS_ERM`, `ARIMA_ERM`, `PERMBU_MINT`, `DeepVAR`, `DeepVARPlus` and `HierE2E`. The argument `num-runs`, due to same reasons as above, is fixed at 5.
 
 ## Results
 

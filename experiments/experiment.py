@@ -170,6 +170,8 @@ class Experiment:
             file.write(f'Train time: {train_time}\n')
         else:
             tags = pd.read_csv(f'{self.dataset_path}/tags.csv', header=None).to_numpy()
+            file = open(f'./experiments/results/{self.method}/{dataset_str}/execution_times.txt', 'a')
+            start_time = time.time()
             predictor = self.estimator(
                 freq=freq,
                 prediction_length=dataset_config_dict[dataset_str]["prediction_length"],
@@ -180,6 +182,8 @@ class Experiment:
                 **self._get_matching_params(self.estimator),
                 tags=tags,
             )
+            train_time = time.time() - start_time
+            file.write(f'Train time: {train_time}\n')
 
         evaluator = MultivariateEvaluator(quantiles=(np.arange(20) / 20.0)[1:], )
                   
