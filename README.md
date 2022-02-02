@@ -16,8 +16,8 @@ Hierarchical Time Series"*
 As we conducted our experiments on two separate machines (mainly due to resource limitation), we provide two sets of 
 instructions for creation of the test environments:
 
-**Instructions for Amazon SageMaker Notebook Instance** (more detailed information about the virtual machine is 
-available in the section **Computational Requirements** in our **Reproducibility Report** stored in the folder `report`)
+### Instructions for Amazon SageMaker Notebook Instance
+(more detailed information about the virtual machine is available in the section **Computational Requirements** in our **Reproducibility Report** stored in the folder `report`)
 
 This machine was used to test the deep learning methods. The work environment on it can be created 
 using the following set of commands:
@@ -30,8 +30,8 @@ cd Reproducibility-Challenge-2021
 pip install -e .
 ```
 
-**Instructions for Linux Ubuntu 20.04 (x64)** (more detailed information about the machine is 
-available in the section **Computational Requirements** in our **Reproducibility Report**)
+### Instructions for Linux Ubuntu 20.04 (x64)
+(more detailed information about the machine is available in the section **Computational Requirements** in our **Reproducibility Report**)
 
 On this machine we evaluated the classical machine learning methods. To create the environment used on it, first run 
 the commands above. Then, also run:
