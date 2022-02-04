@@ -62,10 +62,11 @@ available. Our findings are presented in the Jupyter Notebook `analyze_datasets.
 ## Evaluation
 
 
-*Note*: If you would only like to generate the tables provided in our **Reproducibility Report** and **Supplementary
-Material to Reproducibility Report** (also available in the folder `report`) from our pickle files with results, then proceed to the section **Results**. Also, if you 
-would like to omit the hyperparameter grid search for the neural models, and directly obtain the results for the best 
-configurations of the models, please continue to the section **Optimal Configuration Tests**.
+**Note**: If you would only like to generate the tables provided in our **Reproducibility Report** and **Supplementary
+Material to Reproducibility Report** (also available in the folder `report`) from our pickle files with results, then 
+proceed to the section **Results**. Also, if you would like to omit the hyperparameter grid search for the neural models,
+and directly obtain the results for the best configurations of the models, please continue to the section 
+**Optimal Configuration Tests**.
 
 ### Hyperparameter Grid Search 
 
